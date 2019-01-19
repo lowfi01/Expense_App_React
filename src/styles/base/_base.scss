@@ -1,0 +1,27 @@
+// Note - Normalize.css is setting all values to zero.
+
+html {
+  // This will force 1REM to 10px
+  // 16*.625 = 10
+  font-size: 62.5%;
+}
+
+body {
+  background: white;
+  font-family: Helvetica, Arial, sans-serif;
+  // Set font-size back to default
+  font-size: $m-size;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 10%;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+.is-active {
+  color: pink;
+}
