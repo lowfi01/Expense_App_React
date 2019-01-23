@@ -18,6 +18,7 @@ import { setTextFilter, sortByAmount } from './actions/filters';
 // Setup Store variable to allow us to use the store functions
 const store = configureStore();
 
+// Test Data
 store.dispatch(addExpense({ description: 'Water Bill', note: ' Nonsense', amount: 20 }));
 store.dispatch(addExpense({ description: 'gym', note: 'nonsense', amount: 200 }));
 store.dispatch(addExpense({ description: 'Holiday', note: 'Random Nonsense', amount: 5500, createdAt: 1000 }));
