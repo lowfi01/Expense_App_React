@@ -47,7 +47,7 @@
     "enzyme-adapter-react-16": "1.0.0",
     "enzyme-to-json": "3.0.1",
     "eslint-config-prettier": "2.9.0",
-    "express": "^4.16.4",
+    "express": "4.16.4",
     "live-server": "1.2.0",
     "lodash.random": "3.2.0",
     "mini-css-extract-plugin": "0.5.0",
