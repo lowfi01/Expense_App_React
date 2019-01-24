@@ -1,5 +1,3 @@
-// entry point
-// output location of bundle
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
