@@ -12,6 +12,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'))
 })
 
-app.listen(port, ()=> {
-  console.log(`Server live on ${port}`);
+app.listen(port, (error)=> {
+  if (error) console.log('error', error);
+  else console.log(`Server live on ${port}`);
 })

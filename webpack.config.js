@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /* eslint-disable */
@@ -39,7 +40,8 @@ module.exports = (env, argv) => {
       }]
     },
     plugins: [
-      CSSExtract
+      CSSExtract,
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/) // reduce the size of moment by 200kbs
     ],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
