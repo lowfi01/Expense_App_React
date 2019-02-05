@@ -14,6 +14,11 @@ import { addExpense } from './actions/expenses';
 import { setTextFilter, sortByAmount } from './actions/filters';
 // import getVisibleExpenses from './selectors/expenses';
 
+// firebase - testing
+import './firebase/firebase';
+
+// es6 promises - testing
+// import './playground/promises';
 
 // Setup Store variable to allow us to use the store functions
 const store = configureStore();
