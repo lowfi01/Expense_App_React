@@ -1,4 +1,12 @@
-import { addExpense, editExpense, removeExpense } from '../../actions/expenses';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
+import { startAddExpense, addExpense, editExpense, removeExpense } from '../../actions/expenses';
+import expenses from '../fixtures/expenses';
+
+// mock store for testing purposes
+const createMockStore = configureMockStore([thunk]); // you must pass the middleware we are using
+
 
 test('should setup remove expense action object', () => {
   const result = removeExpense({ id : '12345' });
@@ -34,7 +42,7 @@ test('should setup add expense action object', () => {
     'createdAt' : 1000
   };
 
-  const result = addExpense(expenseData);
+  const result = addExpense(expenses[2]);
   // result Object {
   //     "type": "ADD_EXPENSE",
   //     "expense": Object {
@@ -49,24 +57,37 @@ test('should setup add expense action object', () => {
 
   expect(result).toEqual({
     type : 'ADD_EXPENSE',
-    expense : {
-      ...expenseData,
-      id : expect.any(String)
-    },
+    expense: expenses[2]
+    // expense : {
+    //   ...expenseData,
+    //   id : expect.any(String)
+    // },
   });
 })
 
-test('should setup add expense action object with default values', () => {
-  const result = addExpense();
+// test('should setup add expense action object with default values', () => {
+//   const result = addExpense();
 
-  expect(result).toEqual({
-    type: 'ADD_EXPENSE',
-    expense: {
-      'description': '',
-      'note' : '',
-      'amount' : 0,
-      'createdAt' : 0,
-      'id' : expect.any(String)
-    }
-  });
-})
+//   expect(result).toEqual({
+//     type: 'ADD_EXPENSE',
+//     expense: {
+//       'description': '',
+//       'note' : '',
+//       'amount' : 0,
+//       'createdAt' : 0,
+//       'id' : expect.any(String)
+//     }
+//   });
+// })
+
+
+// test('should add expense to database and store', () => {
+//   const store = createMockStore({});
+
+//   store.dispatch(startAddExpense);
+
+// })
+
+// test('should add expense with defaults to database and store', () => {
+
+// })
