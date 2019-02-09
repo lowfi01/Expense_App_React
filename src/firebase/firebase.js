@@ -1,6 +1,5 @@
 import * as firebase from 'firebase'; // use aliase to define firebase variable that will access all named exports
 
-
 const config = {
   apiKey: 'AIzaSyBRLiJuSP02GXXruiEVFPJg3ud3OPyoEJo',
   authDomain: 'budget-app-version1.firebaseapp.com',
@@ -14,6 +13,8 @@ firebase.initializeApp(config); // enable firebase
 
 const database = firebase.database();
 
+export { firebase, database as default };
+
 // // child_removed event subscription - only check for removed items
 // database.ref('expenses').on('child_removed', (snapshot) => {
 //   console.log(snapshot.key, snapshot.val());
@@ -24,10 +25,10 @@ const database = firebase.database();
 //   console.log(snapshot.key, snapshot.val());
 // })
 
-// child_added event subscription - only check when we add to the child
-database.ref('expenses').on('child_added', snapshot => {
-  console.log(snapshot.key, snapshot.val());
-})
+// // child_added event subscription - only check when we add to the child
+// database.ref('expenses').on('child_added', snapshot => {
+//   console.log(snapshot.key, snapshot.val());
+// })
 
 // database.ref('expenses')
 //   .on('value', (snapshot) => {
