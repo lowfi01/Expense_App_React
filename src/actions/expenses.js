@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+import uuid from 'uuid'; // eslint-disable-line
 import database from '../firebase/firebase';
 
 // Add Expense
@@ -20,7 +20,9 @@ export const startAddExpense = (expenseData = {}) =>
       createdAt = 0
     } = expenseData;
     const expense = {description, note, amount, createdAt};
-    database.ref('expenses').push(expense).then((ref) => {
+
+    // we are only returning, so the chained promise within our test has access to data
+    return database.ref('expenses').push(expense).then((ref) => {
      // use the promise to then dispatch the action object to redux store
      // Note - we don't actually want the id to be pushed to the database, only to the redux store.
      dispatch(addExpense({
@@ -28,7 +30,7 @@ export const startAddExpense = (expenseData = {}) =>
        ...expense
      }));
     }).catch((e) => {
-       console.log(' error pushing exenpse to firebase : ', e )
+       console.log(' error pushing exenpse to firebase : ', e ) // eslint-disable-line
     });
   }
 

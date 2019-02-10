@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 import { startAddExpense, addExpense, editExpense, removeExpense } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
+import database from '../../firebase/firebase';
 
 // mock store for testing purposes
 const createMockStore = configureMockStore([thunk]); // you must pass the middleware we are using
@@ -35,12 +36,12 @@ test('should setup edit expense action object', () => {
 
 
 test('should setup add expense action object', () => {
-  const expenseData ={
-    'description': 'Test Data',
-    'note' : 'Test Data for add expense action generator',
-    'amount' : 100,
-    'createdAt' : 1000
-  };
+  // const expenseData ={
+  //   'description': 'Test Data',
+  //   'note' : 'Test Data for add expense action generator',
+  //   'amount' : 100,
+  //   'createdAt' : 1000
+  // };
 
   const result = addExpense(expenses[2]);
   // result Object {
@@ -80,13 +81,35 @@ test('should setup add expense action object', () => {
 //   });
 // })
 
+// passing done to ensure that the testcase is going to be asychronouse
+test('should add expense to database and store', (done) => {
+  const store = createMockStore({});
+  const expenseData = {
+    description: 'Mouse',
+    amount: 3000,
+    note: 'random note',
+    createdAt: 1000
+  };
 
-// test('should add expense to database and store', () => {
-//   const store = createMockStore({});
+  store.dispatch(startAddExpense(expenseData))
+    .then(() => { // chained promise, we use return in our expense.js action file for this reason
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'ADD_EXPENSE',
+        expense: {
+          id: expect.any(String),
+          ...expenseData
+        }
+      })
 
-//   store.dispatch(startAddExpense);
+      return database.ref(`expenses/${actions[0].expense.id}`).once('value')
 
-// })
+    }).then((snapshot) => {
+      expect(snapshot.val()).toEqual(expenseData);
+      done();
+    });
+
+})
 
 // test('should add expense with defaults to database and store', () => {
 
