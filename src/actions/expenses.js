@@ -40,6 +40,12 @@ export const removeExpense = ({id}) => ({
   id
 })
 
+export const startRemoveExpense = ({id}) => (dispatch) => { // eslint-disable-line
+    return database.ref(`expenses/${id}`).remove().then(() => {
+      dispatch(removeExpense({id}))
+    });
+  }
+
 
 // Edit Expense
 export const editExpense = (id, updates ) => ({
