@@ -44,6 +44,8 @@ export { firebase, database as default };
 //       console.log(' error with subscription fetch of expenses : ', e )
 //   })
 
+
+// Fetch data from firebase
 // database.ref('expenses')
 //   .once('value')
 //   .then((snapshot) => {

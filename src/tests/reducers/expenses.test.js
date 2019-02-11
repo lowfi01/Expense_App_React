@@ -82,3 +82,22 @@ test('should not edit an expense', () => {
 
   expect(state).toEqual(expenses);
 });
+
+test('should set expenses to state', () => {
+  const oldState = [
+    {
+      id: 1,
+      description: 'OldState',
+      note: '',
+      amount: 199,
+      createdAt: 0 // unix epoch jan 1st midnight 1970
+    }
+  ]
+  const action = {
+    type: 'SET_EXPENSES',
+    expenses
+  }
+
+  const state = expensesReducer(oldState, action)
+  expect(state).toEqual(expenses)
+})

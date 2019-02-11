@@ -10,7 +10,7 @@ import AppRouter from './routers/AppRouter';
 // Import Redux Store
 import configureStore from './store/configureStore';
 
-import { addExpense } from './actions/expenses';
+import { startSetExpenses } from './actions/expenses';
 import { setTextFilter, sortByAmount } from './actions/filters';
 // import getVisibleExpenses from './selectors/expenses';
 
@@ -23,11 +23,26 @@ import './firebase/firebase';
 // Setup Store variable to allow us to use the store functions
 const store = configureStore();
 
+
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+)
+
+ReactDom.render(<p>Loading....</p>, document.getElementById('app'));
+
+// only run when we have succesfully made a dispatch to database
+store.dispatch(startSetExpenses()).then(() => {
+  ReactDom.render(jsx, document.getElementById('app'));
+});
+
+
 // Test Data
-store.dispatch(addExpense({ description: 'Water Bill', note: ' Nonsense', amount: 20 }));
-store.dispatch(addExpense({ description: 'gym', note: 'nonsense', amount: 200 }));
-store.dispatch(addExpense({ description: 'Holiday', note: 'Random Nonsense', amount: 5500, createdAt: 1000 }));
-store.dispatch(addExpense({ description: 'Rent', note: 'Random Nonsense', amount: 5500, createdAt: 10000 }));
+// store.dispatch(addExpense({ description: 'Water Bill', note: ' Nonsense', amount: 20 }));
+// store.dispatch(addExpense({ description: 'gym', note: 'nonsense', amount: 200 }));
+// store.dispatch(addExpense({ description: 'Holiday', note: 'Random Nonsense', amount: 5500, createdAt: 1000 }));
+// store.dispatch(addExpense({ description: 'Rent', note: 'Random Nonsense', amount: 5500, createdAt: 10000 }));
 // store.dispatch(setTextFilter('gym'));
 // store.dispatch(sortByAmount());
 
@@ -40,12 +55,3 @@ store.dispatch(addExpense({ description: 'Rent', note: 'Random Nonsense', amount
 // const {expenses, filters} = state;
 // const visible =  getVisibleExpenses(expenses, filters);
 // console.log(visible);
-
-
-const jsx = (
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>
-)
-
-ReactDom.render(jsx, document.getElementById('app'));
