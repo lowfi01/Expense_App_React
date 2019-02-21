@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
-import AppRouter from './routers/AppRouter';
+
 
 // Import Redux Store
 import configureStore from './store/configureStore';
@@ -14,6 +14,7 @@ import { startSetExpenses } from './actions/expenses';
 import { setTextFilter, sortByAmount } from './actions/filters';
 // import firebase & googleAuthProvider
 import {firebase, googleAuthProvider} from './firebase/firebase';
+import AppRouter, { history } from './routers/AppRouter';
 
 // import getVisibleExpenses from './selectors/expenses';
 
@@ -24,8 +25,7 @@ import {firebase, googleAuthProvider} from './firebase/firebase';
 // import './playground/promises';
 
 // Setup Store variable to allow us to use the store functions
-const store = configureStore();
-
+const store = configureStore(); // added for screenshot :D
 
 const jsx = (
   <Provider store={store}>
@@ -36,19 +36,21 @@ const jsx = (
 // loading screen while firebase data is called asychronously
 ReactDom.render(<p>Loading....</p>, document.getElementById('app'));
 
-// only run when we have succesfully made a dispatch to database
-store.dispatch(startSetExpenses()).then(() => {
-  ReactDom.render(jsx, document.getElementById('app'));
-});
-
 // implement firebase googleAuthProvider
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log('LOGIN')
+    // Run code when the person is logged in
+    store.dispatch(startSetExpenses()).then(() => {
+      // Notice - will only run when promise is forfilled
+      ReactDom.render(jsx, document.getElementById('app'));
+});
   } else {
-    console.log('LOGOUT')
+    // Run code when user is logged out
+    ReactDom.render(jsx, document.getElementById('app')); //  prevent loading screen running forever
+    history.push('/'); // redirect user to homescreen
   }
 });
+
 
 // Test Data
 // store.dispatch(addExpense({ description: 'Water Bill', note: ' Nonsense', amount: 20 }));
