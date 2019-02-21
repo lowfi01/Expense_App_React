@@ -54,6 +54,13 @@ export const editExpense = (id, updates ) => ({
   updates
 });
 
+export const startEditExpense = (id, updates) => (dispatch) => { // eslint-disable-line
+    return database.ref(`expenses/${id}`).update(updates).then(() => {
+      dispatch(editExpense(id, updates));
+    });
+  }
+
+
 // SET_EXPENSES
 export const setExpenses = (expenses) => ({
     type: 'SET_EXPENSES',

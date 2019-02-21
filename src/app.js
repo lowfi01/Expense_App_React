@@ -12,10 +12,13 @@ import configureStore from './store/configureStore';
 
 import { startSetExpenses } from './actions/expenses';
 import { setTextFilter, sortByAmount } from './actions/filters';
+// import firebase & googleAuthProvider
+import {firebase, googleAuthProvider} from './firebase/firebase';
+
 // import getVisibleExpenses from './selectors/expenses';
 
-// firebase - testing
-import './firebase/firebase';
+// // firebase - testing
+// import './firebase/firebase';
 
 // es6 promises - testing
 // import './playground/promises';
@@ -30,6 +33,7 @@ const jsx = (
   </Provider>
 )
 
+// loading screen while firebase data is called asychronously
 ReactDom.render(<p>Loading....</p>, document.getElementById('app'));
 
 // only run when we have succesfully made a dispatch to database
@@ -37,6 +41,14 @@ store.dispatch(startSetExpenses()).then(() => {
   ReactDom.render(jsx, document.getElementById('app'));
 });
 
+// implement firebase googleAuthProvider
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log('LOGIN')
+  } else {
+    console.log('LOGOUT')
+  }
+});
 
 // Test Data
 // store.dispatch(addExpense({ description: 'Water Bill', note: ' Nonsense', amount: 20 }));

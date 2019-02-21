@@ -12,8 +12,9 @@ const config = {
 firebase.initializeApp(config); // enable firebase
 
 const database = firebase.database();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database as default };
+export { googleAuthProvider, firebase, database as default };
 
 // // child_removed event subscription - only check for removed items
 // database.ref('expenses').on('child_removed', (snapshot) => {
