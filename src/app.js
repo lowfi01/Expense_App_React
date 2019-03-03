@@ -15,6 +15,7 @@ import { setTextFilter, sortByAmount } from './actions/filters';
 // import firebase & googleAuthProvider
 import {firebase, googleAuthProvider} from './firebase/firebase';
 import AppRouter, { history } from './routers/AppRouter';
+import { login, logout } from './actions/auth';
 
 // import getVisibleExpenses from './selectors/expenses';
 
@@ -48,7 +49,9 @@ ReactDom.render(<p>Loading....</p>, document.getElementById('app')); // render a
 
 firebase.auth().onAuthStateChanged((user) => { // implement firebase googleAuthProvider
   if (user) {
-    console.log('logged in: ', user);
+    console.log('logged in and store user uid : ', user.uid);
+    // lets store the uid to the redux store so we can track users
+    store.dispatch(login(user.uid));
     // Run code when the person is logged in
     // Notice - will only run when promise is forfilled
     store.dispatch(startSetExpenses()).then(() => {
@@ -59,6 +62,7 @@ firebase.auth().onAuthStateChanged((user) => { // implement firebase googleAuthP
     });
   } else {
     console.log('logged out: ');
+    store.dispatch(logout());
     // Run code when user is logged out
     renderApp(); // render applicaiton to prevent loading screen from running forever
     history.push('/'); // redirect user to login
