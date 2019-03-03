@@ -33,21 +33,35 @@ const jsx = (
   </Provider>
 )
 
-// loading screen while firebase data is called asychronously
-ReactDom.render(<p>Loading....</p>, document.getElementById('app'));
+let hasRendered = false;
+const renderApp = () => {
+  // We only render the app once (when the user first visits the site) and not every time
+  // they login or logout which is what would happen without the check.
+  if(!hasRendered) {
+    ReactDom.render(jsx, document.getElementById('app')); // render the application
+    hasRendered = true; // application is now rendered, don't render again
+  }
+}
 
-// implement firebase googleAuthProvider
-firebase.auth().onAuthStateChanged((user) => {
+// loading screen while firebase data is called asychronously
+ReactDom.render(<p>Loading....</p>, document.getElementById('app')); // render a loading screen
+
+firebase.auth().onAuthStateChanged((user) => { // implement firebase googleAuthProvider
   if (user) {
+    console.log('logged in: ', user);
     // Run code when the person is logged in
+    // Notice - will only run when promise is forfilled
     store.dispatch(startSetExpenses()).then(() => {
-      // Notice - will only run when promise is forfilled
-      ReactDom.render(jsx, document.getElementById('app'));
-});
+      renderApp();
+      if (history.location.pathname === '/') { // lets check if the user is logging in before moving them :D
+        history.push('/dashboard'); // redirect user to dashboard
+      }
+    });
   } else {
+    console.log('logged out: ');
     // Run code when user is logged out
-    ReactDom.render(jsx, document.getElementById('app')); //  prevent loading screen running forever
-    history.push('/'); // redirect user to homescreen
+    renderApp(); // render applicaiton to prevent loading screen from running forever
+    history.push('/'); // redirect user to login
   }
 });
 
