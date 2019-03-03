@@ -6,7 +6,6 @@ import ExpenseDashBoard from '../components/ExpenseDashBoard';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
 import Login from '../components/Login';
-import Header from '../components/Header';
 import PrivateRoute from './PrivateRoute';
 
 // createHistory
@@ -17,7 +16,6 @@ const NotFoundPage = (props) => <div> <h3>Page Underconstruction</h3> </div>;
 const AppRouter = () => (
   <Router history={history}>
     <div>
-    <Header />
     <Switch>
       <Route exact path="/" component={Login}/>
       <PrivateRoute path="/dashboard" component={ExpenseDashBoard} />

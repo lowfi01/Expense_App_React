@@ -4,6 +4,8 @@ import React from 'react'
 import { connect } from 'react-redux'; // we need to user redux store
 import { Route, Redirect } from 'react-router-dom'; // we need to route users
 
+import Header from '../components/Header';
+
 export const PrivateRoute = ({
     isAuthenticated,
     component: Component,
@@ -12,7 +14,10 @@ export const PrivateRoute = ({
   console.log('PrivateRoute rest property: ');
   return <Route {...rest} component={(props) => (
     isAuthenticated ? (
-          <Component {...props}/>
+          <div>
+            <Header />
+            <Component {...props}/>
+          </div>
         ) : (
           <Redirect to="/" />
         )
