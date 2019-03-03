@@ -11,7 +11,7 @@ export const PrivateRoute = ({
     component: Component,
     ...rest  // this will contain everything we did not destructor
 }) => {
-  console.log('PrivateRoute rest property: ');
+  console.log(`Private Path Route logic : ${isAuthenticated ? 'Render component' : 'Redirecting to login'} `);
   return <Route {...rest} component={(props) => (
     isAuthenticated ? (
           <div>
