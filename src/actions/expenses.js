@@ -11,7 +11,8 @@ export const addExpense = (expense) => ({
 export const startAddExpense = (expenseData = {}) =>
   // This function will update the store for us
   // return function gives us access to dispatch so we can dispatch the action object to our store
-   (dispatch) => {
+   (dispatch, getState) => {
+    const uid = getState().auth.uid // eslint-disable-line
     // do stuff before we call dispatch
     const {
       description = '',
@@ -22,7 +23,7 @@ export const startAddExpense = (expenseData = {}) =>
     const expense = {description, note, amount, createdAt};
 
     // we are only returning, so the chained promise within our test has access to data
-    return database.ref('expenses').push(expense).then((ref) => {
+    return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => {
      // use the promise to then dispatch the action object to redux store
      // Note - we don't actually want the id to be pushed to the database, only to the redux store.
      dispatch(addExpense({
@@ -40,8 +41,9 @@ export const removeExpense = ({id}) => ({
   id
 })
 
-export const startRemoveExpense = ({id}) => (dispatch) => { // eslint-disable-line
-    return database.ref(`expenses/${id}`).remove().then(() => {
+export const startRemoveExpense = ({id}) => (dispatch, getState) => { // eslint-disable-line
+    const uid = getState().auth.uid // eslint-disable-line
+    return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
       dispatch(removeExpense({id}))
     });
   }
@@ -54,8 +56,9 @@ export const editExpense = (id, updates ) => ({
   updates
 });
 
-export const startEditExpense = (id, updates) => (dispatch) => { // eslint-disable-line
-    return database.ref(`expenses/${id}`).update(updates).then(() => {
+export const startEditExpense = (id, updates) => (dispatch, getState) => { // eslint-disable-line
+    const uid = getState().auth.uid // eslint-disable-line
+    return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
       dispatch(editExpense(id, updates));
     });
   }
@@ -67,19 +70,24 @@ export const setExpenses = (expenses) => ({
     expenses
   })
 
-export const startSetExpenses = () => (dispatch) =>
+export const startSetExpenses = () => (dispatch, getState) =>{
+  const uid = getState().auth.uid // eslint-disable-line
   // return for test purposes, we want the promise returned
-   database.ref('expenses')
+  return (
+    database.ref(`users/${uid}/expenses`)
       .once('value')
       .then((snapshot) => {
-        const expenses = [];
+          const expenses = [];
 
-        snapshot.forEach(expense => {
-          expenses.push({
-            id: expense.key,
-            ...expense.val()
-          })
-        });
+          snapshot.forEach(expense => {
+            expenses.push({
+              id: expense.key,
+              ...expense.val()
+            })
+          });
 
-        dispatch(setExpenses(expenses));
-      })
+    dispatch(setExpenses(expenses));
+  })
+  )
+
+}
