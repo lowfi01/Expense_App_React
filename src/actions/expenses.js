@@ -31,7 +31,7 @@ export const startAddExpense = (expenseData = {}) =>
        ...expense
      }));
     }).catch((e) => {
-       console.log(' error pushing exenpse to firebase : ', e ) // eslint-disable-line
+       console.log(' error pushing expense to firebase : ', e ) // eslint-disable-line
     });
   }
 

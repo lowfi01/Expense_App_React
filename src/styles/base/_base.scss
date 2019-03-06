@@ -1,4 +1,7 @@
-// Note - Normalize.css is setting all values to zero.
+// Note - Normalize.css is setting all values to zero, find this in app.js import normalize.css
+
+// Base styles for all components & pages
+
 
 html {
   // This will force 1REM to 10px
@@ -7,15 +10,14 @@ html {
 }
 
 body {
-  background: white;
-  font-family: Helvetica, Arial, sans-serif;
-  // Set font-size back to default
-  font-size: $m-size;
+  color: $dark-gray; // Standerizes the color to #333333 dark gray
+  font-family: Helvetica, Arial, sans-serif; // Standerize fonts across browsers
+  font-size: $m-size; // Standerizes the font size across browsers
+  line-height: 1.6;
 }
 
 button {
   cursor: pointer;
-  border-radius: 10%;
 }
 
 button:disabled {

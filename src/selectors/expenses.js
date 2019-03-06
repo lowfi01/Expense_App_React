@@ -1,3 +1,7 @@
+/* eslint-disable */
+
+
+
 import moment from 'moment';
 
 export default (expenses, {text, sortBy, startDate, endDate}) =>
@@ -12,19 +16,17 @@ export default (expenses, {text, sortBy, startDate, endDate}) =>
       // const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate ;
       // const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate ;
 
-      const createdAtMoment = moment(expense.createdAt); // create a time stamp for a period of time
-      const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true ;
-      const endDateMatch = endDate ? endDate.isSameOrBefore(createdAtMoment, 'day') : true;
-      const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());;
+      const createdAtMoment = moment(expense.createdAt);
+      const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
+      const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
+      const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
 
       return startDateMatch && endDateMatch && textMatch;
    }).sort((a, b) => { // eslint-disable-line
 
     if(sortBy === 'date') {
-      return  a.createdAt < b.createdAt ? 1 : -1;
-     }
-
-     if (sortBy === 'amount') {
+      return  a.createdAt < b.createdAt ? 1 : -1;x
+     } else if (sortBy === 'amount') {
       return a.amount < b.amount ? 1 : -1;
      }
 

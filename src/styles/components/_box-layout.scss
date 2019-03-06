@@ -1,0 +1,29 @@
+// Used for login page
+
+// Setup background image
+.box-layout {
+  background: url('/images/bg.jpg'); // Remember runs in the browser so we only can access public folder
+  background-size: cover; // Allows cover the container with the image
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// setup nested box that holds our login
+.box-layout__box {
+  background: fade-out($color: white, $amount: .15); // adds a transparent background 15%
+  border-radius: 3px; // add a soft border
+  text-align: center; // center text
+  width: 25rem;
+  padding: $l-size $m-size;
+}
+
+
+// lets improve the title
+.box-layout__title {
+  margin: 0 0 $m-size; // prevent __box padding from fighting with title
+  line-height: 1;
+}
+

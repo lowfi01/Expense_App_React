@@ -1,0 +1,10 @@
+// Blue button - Action
+.button {
+  background: $blue; // background color
+  color: white; // text color
+  border: none;
+  font-weight: 300; // how thick the font will be
+  font-size: 1.8rem;
+  padding: $s-size;
+}
+
