@@ -1,10 +1,28 @@
-// Blue button - Action
+// Header Page
+ // -- Link
+// ExpenseSummary
+ //  -- Link
+
+// Button Main
+  // -- Style All main action buttons
+  // -- Also Turn Links into buttons
 .button {
   background: $blue; // background color
-  color: white; // text color
-  border: none;
+  border: none; // text color
+  color: white;
+  display: inline-block; // turn element into a block level element
   font-weight: 300; // how thick the font will be
-  font-size: 1.8rem;
+  line-height: 1;
   padding: $s-size;
+  text-decoration: none;
 }
 
+// Style Header Link to look like a link Rather then a button
+.button--link {
+  background: none;
+}
+
+// Button Secondary
+.button--secondary {
+  background: $gray;
+}

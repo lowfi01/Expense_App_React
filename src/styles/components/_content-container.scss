@@ -2,6 +2,7 @@
 
 .content-container {
   margin: 0 auto; // automatically center, by destributing content evently on both the right and left
+  // Note - by wrapping content container, we allow it to set out left & right paddding for nested content
   padding: 0 $m-size;
   max-width: 80rem;
 }

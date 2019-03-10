@@ -8,7 +8,7 @@ import ExpenseItem from './ExpenseItem';
 
 // we export this component as a named component for testing
 export const ExpenseList = (props) => (
-    <div>
+    <div className="content-container">
 
       {
         props.expenses.length === 0 ? (

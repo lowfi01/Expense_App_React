@@ -6,10 +6,9 @@ import ExpensesSummary from './ExpensesSummary';
 
 export const ExpenseDashBoard = (props) => (
     <div>
-      <h1>Expense DashBoard</h1>
+      <ExpensesSummary />
       <ExpenseListFilters />
       <ExpenseList />
-      <ExpensesSummary />
     </div>
 
   )

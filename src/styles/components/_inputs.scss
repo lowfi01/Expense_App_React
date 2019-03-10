@@ -1,0 +1,35 @@
+// Expense List Filters
+  // -- search bar input
+  // -- select bar input
+
+// Expense Form
+  // Basically all the inputs
+
+// Note - Date-Picker our 3rd party libary uses generic input styles
+ // -- Define our own styles to match Date-Picker
+ // -- Do not manipulate input type text as that will just break date-picker
+
+// Search bar
+ // -- match date-picker
+.text-input {
+  border: 1px solid #cacccd;
+  height: 50px;
+  padding: $s-size;
+  font-size: $font-size-large;
+}
+
+// inheritence
+ // .text-input, .select {  } // defualt inheritence
+ // @extend .text-input;  // sass inheirtence option
+
+
+// Select drop downs
+.select {
+  @extend .text-input; // inherit all styles from text-input
+}
+
+// Text-Area input, found within add expense
+.text-area {
+  @extend .text-input; // inherit all the styles from text-input
+  height: 10rem; // lets make it massive
+}

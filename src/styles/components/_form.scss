@@ -1,0 +1,21 @@
+// Forms Component
+
+// Style the entire form
+.form {
+  display: flex;
+  flex-direction: column;
+
+  // Target all direct disendents, All children
+  > * {
+    margin-bottom: $m-size;
+  }
+
+}
+
+// style p tag that conditional renders on error
+.form__errors {
+  margin: 0 0 $m-size 0; // reset the margins
+  font-style: italic; // make font italic
+  color: red;
+
+}

@@ -1,0 +1,22 @@
+// Expense list filters
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $l-size;
+
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    margin-bottom: $m-size;
+  }
+}
+
+.input-group__item {
+  margin-bottom: $s-size;
+
+  @media (min-width: $desktop-breakpoint) {
+    margin-right: $s-size;
+    margin: 0 $s-size 0 0 ;
+  }
+}
+

@@ -18,6 +18,7 @@
 // create a div, that will use flex box to space content into a row rather then column
 .header__content {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  padding: $s-size 0;
 }

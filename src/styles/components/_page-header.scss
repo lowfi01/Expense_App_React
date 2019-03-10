@@ -1,0 +1,26 @@
+// Expenses Summary Page
+// note - Top Component within the Summery Dashboard, Shows the total price & count of expenses
+
+// Add Expenses Component
+
+// Main Wrapper
+.page-header {
+  background: #f7f7f7;
+  padding: $l-size 0;  // content container will set the left and right padding
+  margin-bottom: $l-size;
+}
+
+// Wrap the text
+.page-header__title {
+  margin: 0;
+  font-weight: 300; // add font thickness, this is actually a sexy thin size
+  span {
+    font-weight: 700; // bold font
+  }
+}
+
+// Link Button
+.page-header__action {
+  margin-top: $m-size;
+
+}

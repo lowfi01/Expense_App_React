@@ -2,6 +2,16 @@
 
 // Base styles for all components & pages
 
+* {
+  box-sizing: border-box; // border-box, will automatically add padding & margin from our height value
+  // content-box, will always add the padding & margin ontop of height values
+  // Example
+    // padding: 20px;
+    // margin: 20px;
+    // Height: 50px;
+    // box-sizing: content-box; = true height will be 90px;
+    // box-sizing: border-box; = true height will be 50px;
+}
 
 html {
   // This will force 1REM to 10px
