@@ -9,17 +9,25 @@ import ExpenseItem from './ExpenseItem';
 // we export this component as a named component for testing
 export const ExpenseList = (props) => (
     <div className="content-container">
-
-      {
-        props.expenses.length === 0 ? (
-          <p>No expenses</p>
-        ) : (
-          props.expenses.map((expense) =>
-          <ExpenseItem key={expense.id} {...expense}/>)
-        )
-      }
-
+      <div className="list-header">
+        <div className="show-for-mobile" >Expenses</div>
+        <div className="show-for-desktop">Expense</div>
+        <div className="show-for-desktop">Amount</div>
+      </div>
+      <div className="list-body">
+          {
+            props.expenses.length === 0 ? (
+              <div className="list-item list-item--message">
+                <span>No Expenses</span>
+              </div>
+            ) : (
+              props.expenses.map((expense) =>
+              <ExpenseItem key={expense.id} {...expense}/>)
+            )
+          }
+      </div>
     </div>
+
   );
 
 

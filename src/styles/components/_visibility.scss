@@ -1,0 +1,20 @@
+// Render conditionally based off mobile vs desktop view
+
+// Expense List
+
+
+.show-for-mobile {
+  // check the min possible width of $value
+  @media (min-width: $desktop-breakpoint) {
+    // disable all if we are on mobile display
+    display: none;
+  }
+}
+
+.show-for-desktop {
+  // check the max possible width of $value
+  @media (max-width: $desktop-breakpoint - 0.01rem) { // subtract a  number so we don't actually trigger both options
+    // disable all if we are on mobile display
+    display: none;
+  }
+}
