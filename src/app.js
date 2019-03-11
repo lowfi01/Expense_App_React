@@ -16,6 +16,7 @@ import { setTextFilter, sortByAmount } from './actions/filters';
 import {firebase, googleAuthProvider} from './firebase/firebase';
 import AppRouter, { history } from './routers/AppRouter';
 import { login, logout } from './actions/auth';
+import LoadingPage from './components/LoadingPage';
 
 // import getVisibleExpenses from './selectors/expenses';
 
@@ -44,8 +45,8 @@ const renderApp = () => {
   }
 }
 
-// loading screen while firebase data is called asychronously
-ReactDom.render(<p>Loading....</p>, document.getElementById('app')); // render a loading screen
+// loading
+ReactDom.render(<LoadingPage />, document.getElementById('app')); // render a loading screen
 
 firebase.auth().onAuthStateChanged((user) => { // implement firebase googleAuthProvider
   if (user) {

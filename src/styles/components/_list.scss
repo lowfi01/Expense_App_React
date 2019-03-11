@@ -16,6 +16,9 @@
 // Body of content for the Expense List
 .list-body {
   margin-bottom: $m-size;
+  @media (min-width: $desktop-breakpoint) {
+    margin-bottom: $l-size;
+  }
 }
 
 // Body list items - list of expenses view

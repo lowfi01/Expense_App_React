@@ -1,0 +1,15 @@
+// loading page
+
+.loader {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// loader image
+.leader__image {
+  height: 6rem; // make img bigger
+  width: 6rem;  // make img bigger
+}
