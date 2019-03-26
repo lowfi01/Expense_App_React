@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
+import ReactGA from 'react-ga';
 
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -25,6 +26,8 @@ import LoadingPage from './components/LoadingPage';
 
 // es6 promises - testing
 // import './playground/promises';
+
+ReactGA.initialize('UA-136536118-1');
 
 // Setup Store variable to allow us to use the store functions
 const store = configureStore(); // added for screenshot :D
