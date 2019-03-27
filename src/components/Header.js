@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { startLogout } from '../actions/auth';
@@ -17,7 +18,7 @@ export const Header = (props) => (
             action: 'Logout',
             label: 'User has Logged out'
           });
-          props.startLogout;
+          props.startLogout();
           }}>Logout</button>
       </div>
     </div>

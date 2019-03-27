@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import ReactGA from 'react-ga';
 import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
@@ -18,13 +18,14 @@ const EditExpensePage = (props) => {
         <ExpenseForm
           expense={props.expense}
           onSubmit={(expense) => {
-                ReactGA.event({
-                  category: 'Edit Expense',
-                  action: 'click button',
-                  label: 'expenses'
-                });
-                props.dispatch(startEditExpense(props.match.params.id, expense));
-                props.history.push('/');
+              ReactGA.event({
+                category: 'Edit Expense',
+                action: 'click button',
+                label: 'expenses'
+              });
+              props.dispatch(startEditExpense(props.match.params.id, expense));
+              props.history.push('/');
+
           }}
         />
         <button
@@ -38,6 +39,7 @@ const EditExpensePage = (props) => {
           });
           props.dispatch(startRemoveExpense({ id : props.expense.id}));
           props.history.push('/');
+
         }}
         >
           Remove Expense
