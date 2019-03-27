@@ -4,9 +4,15 @@ import {startLogin} from '../actions/auth';
 
 const Login = (props) => {
   const onClick = () => {
+    ReactGA.event({
+      category: 'User',
+      action: 'Login',
+      label: 'User has logged in'
+    });
     // props.history.push('/expense')
     props.startLogin();
   }
+
   return (
     <div className="box-layout">
       <div className="box-layout__box">

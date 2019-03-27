@@ -27,8 +27,6 @@ import LoadingPage from './components/LoadingPage';
 // es6 promises - testing
 // import './playground/promises';
 
-ReactGA.initialize('UA-136536118-1');
-
 // Setup Store variable to allow us to use the store functions
 const store = configureStore(); // added for screenshot :D
 
@@ -40,6 +38,10 @@ const jsx = (
 
 let hasRendered = false;
 const renderApp = () => {
+  // ghetto React GA works
+  ReactGA.initialize('UA-136536118-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+
   // We only render the app once (when the user first visits the site) and not every time
   // they login or logout which is what would happen without the check.
   if(!hasRendered) {

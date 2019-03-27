@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ReactGA from 'react-ga';
 import ExpenseForm from './ExpenseForm';
 
 // import { addExpense } from '../actions/expenses';
@@ -7,6 +8,11 @@ import { startAddExpense } from '../actions/expenses';
 
 const AddExpensePage = (props) => {
   const onSubmit = (expense) => {
+      ReactGA.event({
+        category: 'Create Expense',
+        action: 'click button',
+        label: 'expenses'
+      });
       props.dispatch(startAddExpense(expense));
       props.history.push('/');
     }

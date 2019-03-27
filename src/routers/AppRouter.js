@@ -8,6 +8,7 @@ import EditExpensePage from '../components/EditExpensePage';
 import Login from '../components/Login';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import withTracker from './GAtracker';
 
 // createHistory
 export const history = createHistory();
@@ -18,10 +19,10 @@ const AppRouter = () => (
   <Router history={history}>
     <div>
     <Switch>
-      <PublicRoute exact path="/" component={Login}/>
-      <PrivateRoute path="/dashboard" component={ExpenseDashBoard} />
-      <PrivateRoute path="/edit/:id" component={EditExpensePage} />
-      <PrivateRoute path="/create" component={AddExpensePage}/>
+      <PublicRoute exact path="/" component={withTracker(Login)}/>
+      <PrivateRoute path="/dashboard" component={withTracker(ExpenseDashBoard)} />
+      <PrivateRoute path="/edit/:id" component={withTracker(EditExpensePage)} />
+      <PrivateRoute path="/create" component={withTracker(AddExpensePage)}/>
       <Route component={NotFoundPage} />
     </Switch>
     </div>

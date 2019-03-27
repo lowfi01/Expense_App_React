@@ -11,7 +11,14 @@ export const Header = (props) => (
         <Link className="header__title" to="/dashboard" activeClassName="is-active">
           <h1>Expensify</h1>
         </Link>
-        <button className="button button--link" onClick={props.startLogout}>Logout</button>
+        <button className="button button--link" onClick={ () => {
+          ReactGA.event({
+            category: 'User',
+            action: 'Logout',
+            label: 'User has Logged out'
+          });
+          props.startLogout;
+          }}>Logout</button>
       </div>
     </div>
   </header>

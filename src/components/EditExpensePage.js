@@ -18,6 +18,11 @@ const EditExpensePage = (props) => {
         <ExpenseForm
           expense={props.expense}
           onSubmit={(expense) => {
+                ReactGA.event({
+                  category: 'Edit Expense',
+                  action: 'click button',
+                  label: 'expenses'
+                });
                 props.dispatch(startEditExpense(props.match.params.id, expense));
                 props.history.push('/');
           }}
@@ -26,6 +31,11 @@ const EditExpensePage = (props) => {
           className="button button--secondary"
           onClick={(e) => {
           e.preventDefault();
+          ReactGA.event({
+            category: 'Remove Expense',
+            action: 'click button',
+            label: 'expenses'
+          });
           props.dispatch(startRemoveExpense({ id : props.expense.id}));
           props.history.push('/');
         }}
