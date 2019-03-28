@@ -37,11 +37,16 @@ const EditExpensePage = (props) => {
           className="button button--secondary"
           onClick={(e) => {
           e.preventDefault();
-          ReactGA.event({
-            category: 'Remove Expense',
-            action: 'click button',
-            label: 'expenses'
-          });
+          // ReactGA.event({
+          //   category: 'Remove Expense',
+          //   action: 'click button',
+          //   label: 'expenses'
+          // });
+          ReactGA.ga('send', 'event', 'Remove Expense', 'click button', 'expenses', 'value', {
+            'dimension1': 'Remove expense dimenion 1',
+            'dimension2': 'Remove expense dimension 2',
+            'dimension3': 'Remove expense dimension 3'
+          })
           props.dispatch(startRemoveExpense({ id : props.expense.id}));
           props.history.push('/');
 
