@@ -17,6 +17,7 @@ export const Header = (props) => (
             category: 'User',
             action: 'Logout',
             label: 'User has Logged out'
+
           });
           props.startLogout();
           }}>Logout</button>

@@ -40,7 +40,7 @@ let hasRendered = false;
 const renderApp = () => {
   // ghetto React GA works
   ReactGA.initialize('UA-136536118-1');
-  ReactGA.pageview(window.location.pathname + window.location.search);
+  // ReactGA.pageview(window.location.pathname + window.location.search);
 
   // We only render the app once (when the user first visits the site) and not every time
   // they login or logout which is what would happen without the check.

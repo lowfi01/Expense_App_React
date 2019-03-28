@@ -21,7 +21,8 @@ const EditExpensePage = (props) => {
               ReactGA.event({
                 category: 'Edit Expense',
                 action: 'click button',
-                label: 'expenses'
+                label: 'expenses',
+                dimension1: 'hello world'
               });
               props.dispatch(startEditExpense(props.match.params.id, expense));
               props.history.push('/');
