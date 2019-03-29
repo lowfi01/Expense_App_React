@@ -8,16 +8,20 @@ import { startAddExpense } from '../actions/expenses';
 
 const AddExpensePage = (props) => {
   const onSubmit = (expense) => {
-      // ReactGA.event({
-      //   category: 'Create Expense',
-      //   action: 'click button',
-      //   label: 'expenses'
-      // });
-      ReactGA.ga('send', 'event', 'Create Expense', 'click button', 'expenses', 'value', {
-        'dimension1': 'Create expense dimenion 1',
-        'dimension2': 'Create expense dimension 2',
-        'dimension3': 'Create expense dimension 3'
-      })
+      ReactGA.event({
+        category: 'Create Expense',
+        action: 'click button',
+        label: 'expenses',
+        dimension5: 'testing5'
+      });
+      // ReactGA.ga('set', 'dimension1', 'custom data');
+      // ReactGA.ga('set', 'dimension2', 'custom data');
+      // ReactGA.ga('set', 'dimension', 'custom data');
+      // ReactGA.ga('send', 'event', 'Create Expense', 'click button', 'expenses', 'value', {
+      //   'dimension1': 'Create expense dimenion 1',
+      //   'dimension2': 'Create expense dimension 2',
+      //   'dimension3': 'Create expense dimension 3'
+      // })
       props.dispatch(startAddExpense(expense));
       props.history.push('/');
     }

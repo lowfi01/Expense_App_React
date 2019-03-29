@@ -18,17 +18,21 @@ const EditExpensePage = (props) => {
         <ExpenseForm
           expense={props.expense}
           onSubmit={(expense) => {
-              // ReactGA.event({
-              //   category: 'Edit Expense',
-              //   action: 'clicked expense',
-              //   label: 'expenses',
-              //   dimension1: 'hello world'
+            // ReactGA.ga('set', 'dimension1', 'custom data');
+            ReactGA.event({
+              category: 'Edit Expense',
+              action: 'clicked expense',
+              label: 'expenses',
+              dimension4: 'value'
+            });
+              // ReactGA.ga('send', 'event', 'Edit Expense', 'clicked expense', 'expenses', 'value', {
+              //   'dimension1': 'Hello im a dimension',
+              //   'dimension2': 'dimension 2',
+              //   'dimension3': 'dimension 3'
+              // })
+              // ga('send', 'pageview', {
+              //   'dimension1':  'Custom Dimension value'
               // });
-              ReactGA.ga('send', 'event', 'Edit Expense', 'clicked expense', 'expenses', 'value', {
-                'dimension1': 'Hello im a dimension',
-                'dimension2': 'dimension 2',
-                'dimension3': 'dimension 3'
-              })
               props.dispatch(startEditExpense(props.match.params.id, expense));
               props.history.push('/');
           }}

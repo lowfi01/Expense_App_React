@@ -5,6 +5,7 @@ import {startLogin} from '../actions/auth';
 
 const Login = (props) => {
   const onClick = () => {
+    ReactGA.ga('set', 'dimension1', 'custom data');
     ReactGA.event({
       category: 'User',
       action: 'Login',

@@ -16,8 +16,8 @@ export const Header = (props) => (
           ReactGA.event({
             category: 'User',
             action: 'Logout',
-            label: 'User has Logged out'
-
+            label: 'User has Logged out',
+            dimension5: 'testing5'
           });
           props.startLogout();
           }}>Logout</button>
