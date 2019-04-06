@@ -44,6 +44,7 @@
     "@babel/core": "7.1.6",
     "@babel/plugin-syntax-object-rest-spread": "7.0.0",
     "@babel/plugin-transform-react-jsx": "7.0.0",
+    "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
     "babel-cli": "6.26.0",

@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+require("@babel/polyfill");
 
 // Enviroment variable that will show the current enviroment state we are in production? or test? or undefined
 // process.env.NODE_ENV
@@ -22,7 +22,7 @@ module.exports = (env, argv) => {
   const isProduction = env === 'production'; // set variable to true or false
   const CSSExtract = new MiniCssExtractPlugin({ filename: 'styles.css' });
   return {
-    entry : './src/app.js',
+    entry : ['@babel/polyfill', './src/app.js'],
     mode: 'development',
     output : {
       path : path.join(__dirname, 'public', 'dist'),
